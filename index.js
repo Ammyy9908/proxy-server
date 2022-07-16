@@ -8,11 +8,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/search", (req, res) => {
-  const { q } = req.query;
+app.get("/search/:q", (req, res) => {
+  const { q } = req.params;
+  console.log(`https://serpapi.com/search.json?engine=google&q=${q.replace("&", "%26")}&location=Delhi%2C+India&google_domain=google.co.in&gl=in&hl=en&tbm=shop&num=100&api_key=286a9da99c5c9703897b9027a90cc452909618e671dbc42fc942869d2c4f1b34`)
   request(
     {
-      url: `https://serpapi.com/search.json?engine=google&q=${q}&location=Delhi%2C+India&google_domain=google.co.in&gl=in&hl=en&tbm=shop&num=100&api_key=286a9da99c5c9703897b9027a90cc452909618e671dbc42fc942869d2c4f1b34`,
+      url: `https://serpapi.com/search.json?engine=google&q=${q.replace("&", "%26")}&location=Delhi%2C+India&google_domain=google.co.in&gl=in&hl=en&tbm=shop&num=100&api_key=286a9da99c5c9703897b9027a90cc452909618e671dbc42fc942869d2c4f1b34`,
     },
     (error, response, body) => {
       if (error || response.statusCode !== 200) {
