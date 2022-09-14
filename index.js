@@ -12,11 +12,12 @@ app.get("/search/:q", (req, res) => {
   const { q } = req.params;
   request(
     {
-      url: `https://serpapi.com/search.json?engine=google&q=${q.replace("&", "%26")}&location=Delhi%2C+India&google_domain=google.co.in&gl=in&hl=en&tbm=shop&num=100&api_key=bd35b539b48cbca316f875077afbec267a47b507ebabf9e45fbf22e0647c5c79`,
+      url: `https://serpapi.com/search.json?engine=google&q=${q.replace("&", "%26")}&location=Delhi%2C+India&google_domain=google.co.in&gl=in&hl=en&tbm=shop&num=100&api_key=9b4131dd017c3f32678d9cd1bd0317191f46b9d4666a728786f5488ae300680c`,
     },
     (error, response, body) => {
+      console.log(body)
       if (error || response.statusCode !== 200) {
-        return res.status(500).json({ type: "error", message: err.message });
+        return res.status(500).json({ type: "error", message: error });
       }
 
       res.json(JSON.parse(body));
